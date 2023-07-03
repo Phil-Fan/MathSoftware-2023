@@ -1,0 +1,22 @@
+\contentsline {section}{\numberline {1}要求}{1}{}%
+\contentsline {section}{\numberline {2}上课例程复现}{1}{}%
+\contentsline {section}{\numberline {3}Environment}{1}{}%
+\contentsline {subsection}{\numberline {3.1}计算机}{1}{}%
+\contentsline {paragraph}{计算机型号}{1}{}%
+\contentsline {paragraph}{CPU}{1}{}%
+\contentsline {paragraph}{内存}{1}{}%
+\contentsline {paragraph}{硬盘大小}{1}{}%
+\contentsline {paragraph}{显卡}{1}{}%
+\contentsline {subsection}{\numberline {3.2}Linux}{1}{}%
+\contentsline {paragraph}{虚拟机内存}{1}{}%
+\contentsline {paragraph}{虚拟机磁盘}{2}{}%
+\contentsline {subsection}{\numberline {3.3}software}{2}{}%
+\contentsline {paragraph}{Linux}{2}{}%
+\contentsline {paragraph}{listofsoftware}{2}{}%
+\contentsline {subsection}{\numberline {3.4}compiler}{2}{}%
+\contentsline {paragraph}{编辑器}{2}{}%
+\contentsline {paragraph}{gcc}{2}{}%
+\contentsline {subsection}{\numberline {3.5}application}{2}{}%
+\contentsline {paragraph}{课程需要}{2}{}%
+\contentsline {paragraph}{兴趣}{2}{}%
+\contentsline {paragraph}{感受}{2}{}%
