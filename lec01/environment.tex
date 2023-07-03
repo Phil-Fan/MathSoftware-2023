@@ -1,5 +1,5 @@
 \documentclass[12pt, a4paper, oneside]{ctexart}
-\usepackage{amsmath, amsthm, amssymb, bm, graphicx, hyperref, mathrsfs}
+\usepackage{amsmath,caption, amsthm, amssymb, bm, graphicx, hyperref, mathrsfs,subfig}
 
 \title{Assignment1 Environment}
 \author{PhilFan 樊铧纬}
@@ -9,6 +9,7 @@
 \newenvironment{problem}{\stepcounter{problemname}\par\noindent\textbf{题目\arabic{problemname}. }}{\\\par}
 \newenvironment{solution}{\par\noindent\textbf{解答. }}{\\\par}
 \newenvironment{note}{\par\noindent\textbf{题目\arabic{problemname}的注记. }}{\\\par}
+
 
 \begin{document}
 \maketitle
@@ -92,6 +93,12 @@
 	
 	\subsection{deal-ii-step57}
 		记得要点击solve\\
+		\begin{figure}
+			\centering
+			\includegraphics[width=.8\textwidth]{pic.png} %1.png是图片文件的相对路径
+			\caption{pic} %caption是图片的标题
+			\label{img} %此处的label相当于一个图片的专属标志，目的是方便上下文的引用
+		\end{figure}\\
 \end{solution}
 
 

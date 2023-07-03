@@ -1,0 +1,21 @@
+文件说明：
+
+lsq.c		- C语言代码，最小二乘拟合程序，make 产生可执行程序lsq。
+lsq 		- 可执行程序，由lsq.c编译产生，运行时需要数据testdata.txt，
+   		  并输出output.dat文件。
+lsq_data.c 	- C语言代码，产生用于拟合的程序，make 产生可执行程序lsq_data。
+lsq_data  	- 可执行程序，又lsq_data.c编译产生，运行后产生测试数据文件
+   		  testdata.txt。
+lsq.gp 		- gnuplot脚本文件，用gnuplot调入后将output.dat文件转成矢量
+   		  图像文件output.eps。
+output.eps 	- 矢量图形文件，由output.dat通过gnuplot产生。
+lsq_slide.tex  	- latex源码文件，编译后产生介绍最小二乘拟合的slide。
+lsq.tex 	- latex源码文件，编译后产生介绍最小二乘拟合的文章，文章中会用到
+  		  由程序产生的数据和图像。
+output.dat 	- 由lsp运行产生的数据。
+references.bib 	- 参考文献，由lsq.tex调用。
+Makefile 	- 编译脚本文件。上述可执行文件和图像数据可以通过make产生，
+  		  make clean则删除全部产生的程序和图像数据。
+
+make 的功能：
+

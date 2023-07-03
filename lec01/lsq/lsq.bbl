@@ -1,0 +1,13 @@
+\begin{thebibliography}{1}
+
+\bibitem{ref1}
+Author A.
+\newblock Title of reference 1.
+\newblock {\em Journal A}, 1(1):1--10, 2023.
+
+\bibitem{ref2}
+Author B.
+\newblock Title of reference 2.
+\newblock {\em Journal B}, 2(2):20--30, 2023.
+
+\end{thebibliography}
