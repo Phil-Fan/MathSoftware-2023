@@ -71,4 +71,4 @@ GPT答案</br>
 这次的Makefile没有仔细学，就是按照老师给的例子模仿了一下</br>
 不懂的地方：为什么先编译一次tex，再编译一次bib，再编译两次tex</br>
 明天再继续！</br>
-
+![](https://gitee.com/philfan/my-images/raw/master/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20230703181455.png)
