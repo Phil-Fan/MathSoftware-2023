@@ -1,5 +1,5 @@
 # MathSoftware-2023
-MathSoftware course guided by Yangming Wang , 2023 , short semester</br>
+MathSoftware course guided by Wang_heyu, 2023 , short semester</br>
 
 
 ## Assignment 0 Pretask
