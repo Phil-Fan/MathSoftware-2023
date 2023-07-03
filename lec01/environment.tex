@@ -1,5 +1,5 @@
 \documentclass[12pt, a4paper, oneside]{ctexart}
-\usepackage{amsmath,caption, amsthm, amssymb, bm, graphicx, hyperref, mathrsfs,subfig}
+\usepackage{amsmath,caption, amsthm, amssymb, bm, graphicx, hyperref, mathrsfs,subfig,cite}
 
 \title{Assignment1 Environment}
 \author{PhilFan 樊铧纬}
@@ -13,7 +13,7 @@
 
 \begin{document}
 \maketitle
-
+在CC98开了一个记录的楼，记录学习中遇到的问题和学习过程;~\cite{ref1}
 \begin{problem}
 	1. 创建你的gitee帐号，创建一个叫math-soft的源，将其设成公开仓库\\
 	2. 在你的源内，增加一篇文档，名为：enviroment.tex，内容为对你参加课程学习的计算环境的描述，要求至少包含\\
@@ -34,7 +34,7 @@
 		\paragraph{硬盘大小}476GB
 		\paragraph{显卡}无独立显卡，为集成显卡
 	\subsection{Linux}
-		\paragraph{实现方式}虚拟机
+		\paragraph{实现方式}虚拟机VMware Workstation 16 Player\\
 		\paragraph{虚拟机内存}
 		使用fdisk查询\\
 	\begin{tabular}{cccc}
@@ -63,7 +63,12 @@
 		\paragraph{Linux}
 			版本Ubuntu 22.04.1 LTS amd64
 		\paragraph{listofsoftware}
-			所有软件的列表放在./software.txt下，因为太长了
+			方法：apt list /-/-installed\\
+			所有软件的列表放在./software.txt下，因为太长了\\
+
+			使用gpt优化答案\\
+		%	"comm -23 <(apt list --installed | cut -d '/' -f 1 | sort) <(gzip -dc /var/log/installer/initial-status.gz | sed -n 's/^Package: //p' | sort) > installed_packages.txt"\\
+
 		%\input{software.txt}
 
 
@@ -92,6 +97,8 @@
 	\setcounter{section}{1}
 	
 	\subsection{deal-ii-step57}
+		图\ref{img} 显示了deal-ii 例子中流线的情况抗
+
 		记得要点击solve\\
 		\begin{figure}
 			\centering
@@ -103,8 +110,8 @@
 
 
 % 使用 BibTeX 管理文献引用
-%\bibliographystyle{plain}
-%\bibliography{references}
+\bibliographystyle{plain}
+\bibliography{references}
 
 \end{document}
 
