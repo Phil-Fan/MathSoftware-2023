@@ -10,6 +10,7 @@ $(PROJ).pdf: $(PROJ).tex $(REF)
 	bibtex $(PROJ)
 	xelatex $(PROJ)
 	xelatex $(PROJ)
+	xdg-open $(PROJ).pdf
 
 
 clean:

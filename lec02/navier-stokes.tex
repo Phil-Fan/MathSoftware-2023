@@ -1,5 +1,5 @@
 \documentclass[12pt, a4paper]{article}
-\usepackage{amsmath, amsthm, amssymb, appendix, bm, graphicx, hyperref, mathrsfs,fancyhdr,ctex,nameref}
+\usepackage{amsmath, amsthm, amssymb, appendix, bm, graphicx, hyperref, mathrsfs,fancyhdr,ctex,nameref,tikz}
 
 % 定义新的页眉样式
 \fancypagestyle{sectionheader}{
@@ -107,7 +107,7 @@ Re = \frac{V_0L}{\nu}
 \newpage
 \section{计算域、交错网格和边界条件}
 \label{sec:b}
-通过考虑一个带周期边界条件的矩形域$ L_x \times L_y$（见图 12.1），数值求解Navier-Stokes方程大大简化了。速度$ q(x, y) $和压力$ p(x, y) $在整个区域上的周期性可以数学地表示为：
+通过考虑一个带周期边界条件的矩形域$ L_x \times L_y$（见\ref{img::left}），数值求解Navier-Stokes方程大大简化了。速度$ q(x, y) $和压力$ p(x, y) $在整个区域上的周期性可以数学地表示为：
 \begin{equation}
 \begin{aligned}
 q(0, y) &= q(L_x, y),p(0, y) = p(L_x, y),\forall y \in \left[ 0,L_y\right] \\
@@ -115,7 +115,81 @@ q(x, 0) &= q(x, L_y),p(x, 0) = p(x, L_y),\forall x \in  \left[0, L_x\right] \\
 \end{aligned}
 \end{equation}
 
-解将被计算的点按照矩形均匀的二维网格分布在域中。由于不是所有变量在我们的方法中共享相同的网格，我们首先定义一个主要网格（见图 12.1），沿着 $x$ 方向取 $n_x$ 个计算点，沿着$y$ 方向取$ n_y $个计算点：
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}[b]{0.45\textwidth}
+    \centering
+    \fbox{
+      \begin{tikzpicture}[scale=1]
+        % 绘制坐标轴
+        \draw[->] (0,0) -- (3,0) node[right] {$x$};
+        \draw[->] (0,0) -- (0,3) node[above] {$y$};
+        % 标注原点和轴名称
+        \node[circle,fill,inner sep=2pt,label=below left:{$(0,0)$}] at (0,0) {};
+
+        % 绘制正方形
+        \draw[red, line width=2pt] (0.1,0) rectangle (2.1,2);
+
+        % 标注实心箭头和文字
+        \draw[latex-latex, line width=1pt, fill=black] (0,1) -- (0.75,1);
+        \node at (-0.5,0.75) {periodicity};
+
+        \draw[latex-latex, line width=1pt, fill=black] (1,0) -- (1,0.75);
+        \node at (1.5,-0.5) {periodicity};
+
+        \draw[latex-latex, line width=1pt, fill=black] (1,2) -- (1,1.25);
+        \node at (1.5,2.25) {periodicity};
+
+        \draw[latex-latex, line width=1pt, fill=black] (2.5,1) -- (1.75,1);
+        \node at (2.75,1.5) {periodicity};
+      \end{tikzpicture}
+    }
+    \caption{Pic1}
+    \label{img::left}
+  \end{minipage}
+  
+  %\hfill%空隙
+  
+  \begin{minipage}[b]{0.45\textwidth}
+    \centering
+    \fbox{
+      \begin{tikzpicture}[scale=1]
+        % 绘制坐标轴
+        \draw[->] (0,0) -- (3.5,0) node[below] {$x$};
+        \draw[->] (0,0) -- (0,3.5) node[left] {$y$};
+
+        % 绘制网格线
+        \foreach \x in {1,2,3}
+          \draw[green, line width=1pt] (\x,0) -- (\x,3);
+        \foreach \y in {1,2,3}
+          \draw[green, line width=1pt] (0,\y) -- (3,\y);
+
+        % 绘制虚线
+        \draw[dashed, gray, line width=1.5pt] (1.5,0) -- (1.5,3);
+        \draw[dashed, gray, line width=1.5pt] (0,1.5) -- (3,1.5);
+
+        % 标注点
+        \node[circle,fill,inner sep=1.5pt,label={[font=\bfseries]below left:\textbf{u(i,j)}}] at (1,1.5) {};
+        \node[circle,fill,inner sep=1.5pt,label={[font=\bfseries]below right:\textbf{p(i,j)}}] at (1.5,1.5) {};
+        \node[circle,fill,inner sep=1.5pt,label={[font=\bfseries]below left:\textbf{v(i,j)}}] at (1.5,1) {};
+
+        % 标注刻度
+        \node[rotate=90] at (1,0) {$x_c(i)$};
+	\node[rotate=90] at (1.5,0) {$x_m(i)$};
+	\node[rotate=90] at (2,0) {$x_c(i+1)$};
+
+        \node[left] at (0,1) {$y_c(j)$};
+        \node[left] at (0,1.5) {$y_m(j)$};
+        \node[left] at (0,2) {$y_c(j+1)$};
+      \end{tikzpicture}
+    }
+    \caption{Pic2}
+    \label{img::right}
+  \end{minipage}
+\end{figure}
+
+
+解将被计算的点按照矩形均匀的二维网格分布在域中。由于不是所有变量在我们的方法中共享相同的网格，我们首先定义一个主要网格（见\ref{img::right}，沿着 $x$ 方向取 $n_x$ 个计算点，沿着$y$ 方向取$ n_y $个计算点：
 \begin{equation}
 \begin{aligned}
 x_c(i) = (i - 1)\delta x, \quad \delta x &= \frac{L_x}{n_x - 1},\quad i = 1,..., n_x \\
@@ -140,7 +214,6 @@ y_m(j) &= (j - 1/2)\delta y,\quad j = 1,...,n_{ym},\\
 \end{itemize}
 
 这种交错排列的变量排列具有压力和速度之间强耦合的优点。它还有助于避免在共位排列（所有变量都在相同的网格点上计算）中遇到的稳定性和收敛性问题（参见本章末尾的参考文献）。
-
 \newpage
 % 使用 Bibtex 文献管理
 \bibliographystyle{plain}
