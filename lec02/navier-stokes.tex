@@ -43,7 +43,7 @@
 
 \section{不可压缩Navier-Stokes方程}
 \label{sec:a}
-二维不可压缩流体的流场完全由速度向量 $q = (u(x, y), v(x, y))\in \mathbb{R^2} $和压力 $p(x, y) \in \mathbb{R} $描述。这些函数是以下守恒定律的解 ~\cite{refa}：
+二维不可压缩流体的流场完全由速度向量 $q = (u(x, y), v(x, y))\in \mathbb{R}^2 $和压力 $p(x, y) \in \mathbb{R} $描述。这些函数是以下守恒定律的解 ~\cite{refa}：
 
 \begin{itemize}
     \item 质量守恒：
@@ -51,12 +51,12 @@
 \begin{equation}
 div(q) = 0,
 \end{equation}或者用散度算子\footnote{
-这里我们回顾一下二维场中v散度、梯度和拉普拉斯算子的定义：y
+这里我们回顾一下二维场中散度、梯度和拉普拉斯算子的定义：y
 如果 $v = (v_x,v_y): \mathbb{R^2} \mapsto \mathbb{R^2}$,$\varphi:\mathbb{R^2} \mapsto \mathbb{R}$则
 \begin{equation}
 div(v) = \frac{\partial v_x}{\partial x} + \frac{\partial v_y}{\partial y}, \quad 
-\mathscr{G}_\varphi = (\frac{\partial \varphi}{\partial x} , \frac{\partial \varphi}{\partial y}),\quad
-\Delta{\varphi}   =  \frac{\partial ^2 \varphi}{\partial x^2} + \frac{\partial ^2 \varphi}{\partial y^2},\quad \\ and\quad\Delta{v}   =  (\Delta{v_x},\Delta{v_y}).
+\mathcal{G}\varphi = (\frac{\partial \varphi}{\partial x} , \frac{\partial \varphi}{\partial y}),\quad
+	\Delta{\varphi} =div(\mathcal{G}\varphi)  =  \frac{\partial ^2 \varphi}{\partial x^2} + \frac{\partial ^2 \varphi}{\partial y^2},\quad \\ and\quad\Delta{v}   =  (\Delta{v_x},\Delta{v_y}).
 \notag
 \end{equation}} 的显式形式表示为：
 \begin{equation}
@@ -68,7 +68,7 @@ div(v) = \frac{\partial v_x}{\partial x} + \frac{\partial v_y}{\partial y}, \qua
     \item 动量守恒方程的紧凑形式\footnote{我们用$\otimes$ 表示张量积。}：
 \end{itemize}
 \begin{equation}
-\frac{\partial q}{\partial t} + div(q\otimes q) = -\mathscr{G}p + \frac{1}{Re} \Delta q 
+\frac{\partial q}{\partial t} + div(q\otimes q) = -\mathcal{G}p + \frac{1}{Re} \Delta q 
 \end{equation}
 或者显式形式为：
 \begin{equation}
