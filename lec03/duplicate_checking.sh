@@ -42,7 +42,7 @@ compare_files() {
 
   # 比较文件并计算不同行的数量,diff 箭头不同代表着不同文件，所以可以统计有以 < 开头的行数，即为统计出的不同的行数
   diff_lines=$(diff "$file1" "$file2" | grep -c "^<")
-
+  
   # 计算阈值
   threshold=$(min "$threshold" "$((file1_lines/5))" "$((file2_lines/5))")
 
@@ -52,7 +52,7 @@ compare_files() {
 	((cnt++))
 	printf "${RED}检测到第 %s 个 符合结果的文件 信息为${NC}\n" "$cnt"
 	printf "${YELLOW}%-20s %-30s${NC}" "$file1" "$file2"
-	printf "%-10s %-10s %s\n" "$diff_lines" "$file1_lines" "$file2_lines"
+	printf "相同行为%-10s %-10s %s\n" "$((file1_lines - diff_lines))" "$file1_lines" "$file2_lines"
   fi
 }
 
@@ -101,6 +101,8 @@ while true; do
   fi  
 done
 
+destination_directory="./data"
+:<<1
 while true; do
   # 从用户输入读取目录路径
   echo -n "请输入目录路径: "
@@ -113,6 +115,7 @@ while true; do
 	break
   fi
 done
+1
 
 # 切换到指定目录
 cd "$destination_directory" || exit 1
@@ -120,7 +123,7 @@ cd "$destination_directory" || exit 1
 # 查找目录中的所有文件,要记住find原先就是递归寻找的，输出结果是每个文件的路径
 files=$(find . -type f)
 echo "------------------------------------------"
-echo "本目录下共有文件${#files[@]}个 分别为"
+printf "本目录下共有文件"
 print_array_elements "${files[@]}"
 echo "------------------------------------------"
 
@@ -128,7 +131,6 @@ cnt=0
 
 # 记录已比较的文件对
 compared_pairs=()
-#my_array=("元素1" "元素2" "元素3")
 #shell 把数组作为函数的参数进行传递时候 需要写成"${my_array[*]}"
 
 
@@ -141,9 +143,7 @@ for file1 in $files; do
     if [ "$file1" != "$file2" ] && ! [[ " ${compared_pairs[*]} " == *" $file1 $file2 "* ]] && ! [[ " ${compared_pairs[*]} " == *" $file2 $file1 "* ]]; then  
       compare_files "$file1" "$file2"
       # 将已比较的文件对添加到记录中
-	  compared_pairs+=("$file1 $file2")
-      #echo "${compared_pairs[@]}"
-	  #print_array_elements "${compared_pairs[*]}"
+      compared_pairs+=("$file1 $file2")
     fi
   done
 done
