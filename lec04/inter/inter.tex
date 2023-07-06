@@ -1,0 +1,90 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath,caption, amsthm, amssymb, bm, graphicx, hyperref, mathrsfs,subfig,cite}
+
+\title{Assignment4 Interpolation Example Programs}
+\author{PhilFan 樊铧纬}
+\date{\today}
+\linespread{1.5}
+\newcounter{problemname}
+\newenvironment{problem}{\stepcounter{problemname}\par\noindent\textbf{题目\arabic{problemname}. }}{\\\par}
+\newenvironment{solution}{\par\noindent\textbf{解答. }}{\\\par}
+\newenvironment{note}{\par\noindent\textbf{题目\arabic{problemname}的注记. }}{\\\par}
+
+
+\begin{document}
+\maketitle
+在CC98开了一个记录的楼，记录学习中遇到的问题和学习过程;~\cite{ref1}
+
+
+\begin{problem}
+	\\1. 阅读附件\\
+	2. 在你的系统里编译并运行该程序；\\
+	3. 修改第十八行\\
+	4. 编译运行修改后的程序，生成图片：inter.eps\\
+\end{problem}
+
+\begin{solution}
+	\setcounter{section}{1}
+	\subsection{编译过程}
+		\paragraph{.c to .o}gcc -c inter.c
+		\paragraph{.o to 程序}gcc -o inter inter.o -lgsl -lm
+		\paragraph{运行生产数据}./inter > inter.dat		
+		\paragraph{生成图片}graph -T ps < interp.dat > interp.eps
+		\paragraph{图片} 最终效果为\ref{img}
+		\paragraph{过程}
+	使用 GSL（GNU Scientific Library）进行插值计算。\\
+	首先，分配了一个 gsl\_inter\_accel 类型的acc，以及一个 gsl\_spline 类型的曲线 spline。\\
+	接着，使用 gsl\_spline\_init 函数初始化，传入数组 $x$ 和 $y$ 的值以及数组的长度。\\
+	然后，使用 $for$ 循环，以 $0.01$ 进行插值计算，并通过 printf 函数输出插值结果的 $x_i $和 $y_i $值\\
+\end{solution}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=.8\textwidth]{interp.eps} %1.png是图片文件的相对路径
+	\caption{生产的图片} %caption是图片的标题
+	\label{img} %此处的label相当于一个图片的专属标志，目的是方便上下文的引用
+\end{figure}
+
+\newpage
+\begin{problem}
+	plotutils库无法安装的问题与解决\\
+	error:没有可用的软件包 plotutils，但是它被其它的软件包引用了。\\
+	这可能意味着这个缺失的软件包可能已被废弃，或者只能在其他发布源中找到\\
+\end{problem}
+
+\begin{solution}
+首先在网上找到了一篇 \cite{chinastor}，按照他的想法，这个库已经不维护了，所以需要自己下载。\\
+打开 \url{https://ftp.gnu.org/gnu/plotutils/}\\
+\texttt{wget https://ftp.gnu.org/gnu/plotutils/plotutils-2.6.tar.gz}\\
+\texttt{tar -xzvf plotutils-2.6.tar.gz}\\
+\texttt{wget https://www.x.org/releases/X11R7.5/src/lib/libXaw-1.0.7.tar.gz}\\
+将 \texttt{include/X11/Xaw} 文件夹下的内容拷贝到 \texttt{/usr/include/X11/Xaw}\\
+\texttt{sudo ln libXaw.so.7 libXaw.so}\\
+继续按照执行\\
+得到错误: forward declaration of \texttt{png\_info}\\
+经过查询发现 \cite{csdn-blog} \cite{libpng-doc} \cite{zhihu-article} 后得出结论，\\
+libpng有些函数由于版本问题并不支持，尤其是一些指针操作。\\
+进入到报错的 \texttt{zwrite} 文件当中，\\
+将所有的 \texttt{png\_ptr->jmpbuf} 替换为 \texttt{png\_jmpbuf(png\_ptr)}，问题得到解决。\\
+\end{solution}
+
+
+
+
+\newpage
+\begin{problem}
+	上课例子程序展示
+\end{problem}
+
+\begin{solution}
+	相关操作文件放在了./demohello文件夹下
+\end{solution}
+
+\newpage
+% 使用 BibTeX 管理文献引用
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}
+
+
