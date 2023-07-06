@@ -238,3 +238,141 @@ cheatsheet[awesome-cheatsheets/languages/bash.sh at master](https://github.com/s
 [linux修改PS1，自定义命令提示符样式 - 自我更新 - 博客园 (cnblogs.com)](https://www.cnblogs.com/liu-shijun/p/11075314.html)</br>
 
 
+## Assignment 4
+
+今天学院小学期回来就快五点了，回来看了智云开始写</br>
+所幸今天的任务不是很难</br>
+但是还是遇到了配环境的一些问题，以及前两天的LaTeX的一些语法问题</br>
+![耗时3h左右](http://file.cc98.org/v2-upload/2023-07-06/wqprth02.jpg)</br>
+耗时3h左右把</br>
+### Task - Environment
+遇到了问题
+```
+没有可用的软件包 plotutils，但是它被其它的软件包引用了。</br>
+这可能意味着这个缺失的软件包可能已被废弃，</br>
+或者只能在其他发布源中找到</br>
+```
+首先去找了[这个经验帖](https://www.chinastor.com/linux/ubuntu/052Q31342015.html)</br>
+里面有很多关键的步骤</br>
+```
+# 下载plotutils库
+wget https://ftp.gnu.org/gnu/plotutils/plotutils-2.6.tar.gz
+
+# 解压缩下载的tar.gz文件
+tar -xzvf plotutils-2.6.tar.gz
+
+# 下载libXaw库
+wget https://www.x.org/releases/X11R7.5/src/lib/libXaw-1.0.7.tar.gz
+
+# 将libXaw库的头文件拷贝到系统目录
+cp plotutils-2.6/include/X11/Xaw/* /usr/include/X11/Xaw
+
+# 创建libXaw.so的软链接
+sudo ln  XXX  XXXX
+
+# 进入plotutils源码目录
+cd plotutils-2.6
+
+# 编辑报错的文件（示例中为zwrite）
+vim z_write
+
+# 在文件中替换所有的png_ptr->jmpbuf为png_jmpbuf(png_ptr)
+:%s/png_ptr->jmpbuf/png_jmpbuf(png_ptr)/gc
+
+# 保存文件并退出编辑器
+
+# 继续安装plotutils库
+./configure
+make
+sudo make install
+
+```
+
+`png_ptr->jmpbuf`又报错了</br>
+根据[网友经验](https://blog.csdn.net/TTTree_/article/details/103925728 )的提示，查询了[官方文档](https://linux.die.net/man/3/libpng) </br>
+在[错误指导](https://zhuanlan.zhihu.com/p/592731889) 中找到了以下提示</br>
+```
+警告：setjmp / longjmp 会让 C++ 包括析构函数在内的很多特性变得不可靠，从而使得 RAII 等防止资源泄露的方法失去原本的效果，所以在后文涉及的代码中请谨慎使用各种 C++ 特性！详情请参见 cppreference 上 longjmp 的介绍：
+```
+所以找到了问题所在：由于版本问题，所以有些结构体和指针的操作并不支持了</br>
+所以要换做`libpng`的函数进行操作，所以进入`z_write`文件</br>
+搜索所有的`png_ptr->jmpbuf` 替换为`setjmp(png_jmpbuf(png_ptr))`</br>
+
+至此，错误消失，可以正常使用</br>
+
+
+### tex
+作业的内容是课上的例子的复现</br>
+其实不深究的话没什么难度</br>
+[插值 - 知乎](https://zhuanlan.zhihu.com/p/98431641)</br>
+[理解插值法](https://zhuanlan.zhihu.com/p/64855561)</br>
+### Makefile
+- gcc 编译</br>
+在功能上，预处理、编译、汇编是3个不同的阶段</br>
+但gcc在实际操作时可以把这3个步骤合并为一个步骤来执行,即使用 -c选项：</br>
+`$ gcc –c test.c -o test.o`</br>
+- 链接</br>
+`gcc -o <exe name> <xxx.o> <xxx.o>`</br>
+动态链接`gcc -shared -o libhello.so hello.c`找不到的时候再去找</br>
+`gcc -o hello main.o -Llib -lhello`</br>
+shell 不知道位置，通过环境变量指明</br>
+`export LD_LIBRARY_PATH=/home/Projects/.../lib`</br>
+
+```
+-L 指定库路径
+-l （小写的L）指定库名称
+-I （大写的i）指定头文件所在路径
+-i 指定头文件名称
+```
+
+
+## Git相关
+今天看完了missing semester里面git的一节，简直讲的不要再清楚</br>
+无敌震惊于老师的操作速度，太牛了简直</br>
+
+通过自顶向下的方式（从命令行接口开始）学习 Git，是抽象且难记忆的</br>
+所以在课上通过**Git 的数据模型**开始介绍，自底向上进行介绍；</br>
+
+数据模型是**快照`Snapshot`+文件`blob`+文件夹`tree`**</br>
+`type object = blob | tree | commit`</br>
+而数据模型是通过其**Hash**值唯一确定的，通过`git cat-file -p HASH`命令可以查看</br>
+
+历史记录的实现是通过**有向无环图**建立的，类似于学过的链表，每个节点都会指向他的父节点</br>
+引用（references）是指向某个提交的指针，</br>
+使用`git checkout`命令，就可以在不同的节点之间来回移动</br>
+
+### 基础操作</br>
+```
+git init  创建一个新的 git 仓库
+git status 显示当前状态
+git add <filename> 添加文件到暂存区
+git commit 创建提交
+git log: 显示历史日志
+git log --all --graph --decorate: 可视化历史记录（有向无环图）!!!! 这个真的是魔术
+git diff <filename>: 显示与暂存区文件的差异
+git diff <revision> <filename>: 显示某个文件两个版本之间的差异
+git checkout <revision>: 更新 HEAD 和目前的分支
+```
+### 远端操作</br>
+```
+git remote: 列出远端
+git remote add <name> <url>: 添加一个远端
+git push <remote> <local branch>:<remote branch>: 将对象传送至远端并更新远端引用
+git branch --set-upstream-to=<remote>/<remote branch>: 创建本地和远端分支的关联关系
+git fetch: 从远端获取对象/索引
+git pull: 相当于 git fetch; git merge
+git clone: 从远端下载仓库
+```
+### 撤销</br>
+```
+git reset HEAD <file>: 恢复暂存的文件
+git checkout -- <file>: 丢弃修改
+```
+### Git 高级操作</br>
+```
+git config: Git 是一个 高度可定制的 工具
+git clone --depth=1: 浅克隆（shallow clone），不包括完整的版本历史信息
+git add -p: 交互式暂存
+git blame: 查看最后修改某行的人
+.gitignore: 指定 故意不追踪的文件
+```
