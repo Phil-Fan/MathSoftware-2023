@@ -64,7 +64,5 @@ $(PROJ).pdf: $(DOCDIR)/$(PROJ).tex $(DOCDIR)/references.bib $(IMAGES)
 
 # 清理中间文件和生成的可执行文件、PDF 文件和图像文件
 clean:
-	rm -rf $(BUILDDIR) $(TARGETS) testdata.txt output.dat $(IMAGES) *.pdf
-	rm -rf $(DOCDIR)/*.aux $(DOCDIR)/*.bbl $(DOCDIR)/*.blg $(DOCDIR)/*.log $(DOCDIR)/*.pdf\
-		$(DOCDIR)/*.out $(DOCDIR)/*.eps $(DOCDIR)/*.dat $(DOCDIR)/*.nav $(DOCDIR)/*.snm $(DOCDIR)/*.toc
+	git ls-files -o | xargs rm -f
 
