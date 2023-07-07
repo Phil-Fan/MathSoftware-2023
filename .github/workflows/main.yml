@@ -1,0 +1,10 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+...
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      # run shellcheck
+      - name: ShellCheck
+        uses: ludeeus/action-shellcheck@2.0.0
