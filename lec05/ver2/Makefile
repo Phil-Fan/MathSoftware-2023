@@ -34,14 +34,14 @@ $(TARGETS): $(OBJS)
 # 生成测试数据文件
 testdata.txt: lsq_data
 	@echo "Generating test data..."
-	@./lsq_data
+	./$<
 
 # 生成输出数据文件
-output.dat: lsq testdata.txt
+output.dat: testdata.txt lsq 
 	@echo "Running lsq..."
-	@./lsq
-	mv $@ ./$(DOCDIR)/output.dat
-	rm testdata.txt
+	@./${PROJ}
+	mv $@ ./$(DOCDIR)/$@
+	rm $<
 
 # 生成图像文件
 $(IMAGES): ./$(DOCDIR)/output.dat $(DOCDIR)/lsq.gp
