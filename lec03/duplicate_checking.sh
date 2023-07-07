@@ -72,12 +72,12 @@ print_array_elements() {
 
 # 欢迎页面
 echo "-----------------------------------------"
-printf "${YELLOW}      欢迎使用重复检查脚本${NC}\n"
+printf "%s      欢迎使用重复检查脚本%s\n" "${YELLOW}" "${NC}"
 echo "-----------------------------------------"
-printf  "${YELLOW}作者：PhilFan${NC}\n"
-printf  "${YELLOW}目的：比较目录中所有文件的区分度${NC}\n"
-printf  "${YELLOW}方法：该脚本比较目录中每个文件的内容，并记录行数差异小于阈值的文件名${NC}\n "
-printf  "${YELLOW}其中阈值为总行数的20%%与手动输入阈值的较小值 ${NC}\n"
+printf  " %s 作者：PhilFan %s \n"  "${YELLOW}" "${NC}"
+printf  " %s 目的：比较目录中所有文件的区分度 %s \n" "${YELLOW}" "${NC}"
+printf  " %s 方法：该脚本比较目录中每个文件的内容，并记录行数差异小于阈值的文件名 %s \n " "${YELLOW}" "${NC}"
+printf  " %s 其中阈值为总行数的20%%与手动输入阈值的较小值 %s \n" "${YELLOW}" "${NC}"
 echo "-----------------------------------------"
 
 # 检查是否提供了目录路径
@@ -91,7 +91,7 @@ fi
 # 验证 threshold 是否为数字
 while true; do
   echo -n "请输入阈值(正整数): "
-  read threshold
+  read -r threshold
   if ! [[ $threshold =~ ^[0-9]+$ ]];then
     echo "请输入数字"	
   elif [[ $threshold -le 0 ]];then
@@ -148,6 +148,6 @@ for file1 in $files; do
   done
 done
 
-printf  "本次搜索共统计出 ${YELLOW} $cnt ${NC} 个结果，欢迎下次使用\n\n"
+printf  "本次搜索共统计出 %s $cnt %s 个结果，欢迎下次使用\n\n" "${YELLOW}" "${NC}"
 # 脚本结束
 
