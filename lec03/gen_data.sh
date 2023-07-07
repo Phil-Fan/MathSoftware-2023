@@ -4,7 +4,7 @@
 # 验证文件数量是否为数字
 while true; do
   echo -n "请输入文件数量(正整数): "
-  read file_count
+  read -r file_count
   if ! [[ $file_count =~ ^[0-9]+$ ]];then
     echo "请输入数字"	
   elif [[ $file_count -le 0 ]];then
@@ -17,7 +17,7 @@ done
 # 验证行数是否为数字
 while true; do
   echo -n "请输入文件默认行数(正整数): "
-  read line_number
+  read -r line_number
   if ! [[ $line_number =~ ^[0-9]+$ ]];then
     echo "请输入数字"	
   elif [[ $line_number -le 0 ]];then
