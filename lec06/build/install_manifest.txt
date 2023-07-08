@@ -1,0 +1,3 @@
+/home/philfan/Projects/MathSoftware-2023/lec06/build/../demo/../demo/bin/chicken
+/home/philfan/Projects/MathSoftware-2023/lec06/build/../demo/../demo/lib/libchicken_lib.so
+/home/philfan/Projects/MathSoftware-2023/lec06/build/../demo/../demo/include/chick.h

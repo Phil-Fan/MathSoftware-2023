@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/chicken.dir/main.cpp.o -o chicken   -L/home/philfan/Projects/MathSoftware-2023/lec06/lib  -Wl,-rpath,/home/philfan/Projects/MathSoftware-2023/lec06/lib:/home/philfan/Projects/MathSoftware-2023/lec06/build: libchicken_lib.so 

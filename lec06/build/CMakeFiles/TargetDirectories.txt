@@ -1,0 +1,9 @@
+/home/philfan/Projects/MathSoftware-2023/lec06/build/CMakeFiles/chicken_lib.dir
+/home/philfan/Projects/MathSoftware-2023/lec06/build/CMakeFiles/chicken.dir
+/home/philfan/Projects/MathSoftware-2023/lec06/build/CMakeFiles/docs.dir
+/home/philfan/Projects/MathSoftware-2023/lec06/build/CMakeFiles/edit_cache.dir
+/home/philfan/Projects/MathSoftware-2023/lec06/build/CMakeFiles/rebuild_cache.dir
+/home/philfan/Projects/MathSoftware-2023/lec06/build/CMakeFiles/list_install_components.dir
+/home/philfan/Projects/MathSoftware-2023/lec06/build/CMakeFiles/install.dir
+/home/philfan/Projects/MathSoftware-2023/lec06/build/CMakeFiles/install/local.dir
+/home/philfan/Projects/MathSoftware-2023/lec06/build/CMakeFiles/install/strip.dir

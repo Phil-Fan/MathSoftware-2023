@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -shared -Wl,-soname,libchicken_lib.so -o libchicken_lib.so CMakeFiles/chicken_lib.dir/src/chick.cpp.o  -Wl,-rpath,:::::::::::::: 
