@@ -1,0 +1,7 @@
+\contentsline {section}{\numberline {1}流程}{1}{section.1}%
+\contentsline {section}{\numberline {2}有限元方法的基本设置}{2}{section.2}%
+\contentsline {section}{\numberline {3}我们应该从左乘还是从右乘以测试函数？}{5}{section.3}%
+\contentsline {section}{\numberline {4}\textit {组装}矩阵和右侧向量}{6}{section.4}%
+\contentsline {section}{\numberline {5}求解线性系统}{9}{section.5}%
+\contentsline {section}{\numberline {6}关于实现}{11}{section.6}%
+\contentsline {section}{\numberline {7}关于类型的说明}{14}{section.7}%

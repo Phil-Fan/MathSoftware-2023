@@ -1,0 +1,10 @@
+/home/philfan/Projects/MathSoftware-2023/proj/step-3/build/CMakeFiles/step-3.dir
+/home/philfan/Projects/MathSoftware-2023/proj/step-3/build/CMakeFiles/run.dir
+/home/philfan/Projects/MathSoftware-2023/proj/step-3/build/CMakeFiles/debug.dir
+/home/philfan/Projects/MathSoftware-2023/proj/step-3/build/CMakeFiles/release.dir
+/home/philfan/Projects/MathSoftware-2023/proj/step-3/build/CMakeFiles/runclean.dir
+/home/philfan/Projects/MathSoftware-2023/proj/step-3/build/CMakeFiles/distclean.dir
+/home/philfan/Projects/MathSoftware-2023/proj/step-3/build/CMakeFiles/strip_comments.dir
+/home/philfan/Projects/MathSoftware-2023/proj/step-3/build/CMakeFiles/info.dir
+/home/philfan/Projects/MathSoftware-2023/proj/step-3/build/CMakeFiles/edit_cache.dir
+/home/philfan/Projects/MathSoftware-2023/proj/step-3/build/CMakeFiles/rebuild_cache.dir
