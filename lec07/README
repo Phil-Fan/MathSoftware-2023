@@ -1,0 +1,33 @@
+GNU_PLOT 下是用GNU_PLOT工具实现的效果
+PYTHON文件夹下是通过PYTHON中的matplotlib库实现的效果
+两种方式思路相似，略有小差别，请根据文件夹下的README进行操作
+
+请先确保您的linux环境下可以执行xdg-open命令
+
+
+请确保您的电脑上拥有这两个库：
+- numpy：用于处理数值计算和数组操作。
+	安装方式：可以使用命令 pip install numpy 进行安装。
+- matplotlib：用于绘制图形和图像。
+	安装方式：可以使用命令 pip install matplotlib 进行安装。
+
+文件夹结构
+.
+├── GNU_PLOT
+│   ├── Makefile
+│   ├── README
+│   └── src
+│       ├── figure.gp
+│       ├── figure.tex
+│       ├── references.bib
+│       └── txt.sh
+├── PYTHON
+│   ├── Makefile
+│   ├── README
+│   └── src
+│       ├── figure.py
+│       ├── figure.tex
+│       ├── references.bib
+│       └── txt.sh
+└── README
+

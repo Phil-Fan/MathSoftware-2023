@@ -1,6 +1,6 @@
-PROJ = environment
+PROJ = figure
 SOURCE := $(PROJ).tex
-IMAGE = pic.png
+IMAGE = ${PROJ}.png
 REF = references.bib
 
 all: $(PROJ).pdf 

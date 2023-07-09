@@ -1,0 +1,44 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath,caption, amsthm, amssymb, bm, graphicx, hyperref, mathrsfs,subfig,cite}
+
+\title{Assignment7 Generate Pictures}
+\author{PhilFan 樊铧纬}
+\date{\today}
+\linespread{1.5}
+\newcounter{problemname}
+\newenvironment{problem}{\stepcounter{problemname}\par\noindent\textbf{题目\arabic{problemname}. }}{\\\par}
+\newenvironment{solution}{\par\noindent\textbf{解答. }}{\\\par}
+\newenvironment{note}{\par\noindent\textbf{题目\arabic{problemname}的注记. }}{\\\par}
+
+
+\begin{document}
+\maketitle
+在CC98开了一个记录的楼，记录学习中遇到的问题和学习过程;~\cite{ref1}
+
+
+\begin{problem}
+	绘制三维椭圆
+\end{problem}
+
+\begin{solution}
+	\setcounter{section}{1}
+	\paragraph{生成过程}
+
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=.8\textwidth]{figure.png} %1.png是图片文件的相对路径
+	\caption{生成的图片} %caption是图片的标题
+	\label{img} %此处的label相当于一个图片的专属标志，目的是方便上下文的引用
+\end{figure}
+由用户指定了椭圆的长轴和短轴，再由gnuplot生成图片后，输出到当前目录下的figure.png， 再引用到当前tex文件中生成最终的pdf
+	\ref{img}
+\end{solution}
+\newpage
+% 使用 BibTeX 管理文献引用
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}
+
+

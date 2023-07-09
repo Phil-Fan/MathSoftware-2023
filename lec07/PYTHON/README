@@ -1,0 +1,6 @@
+输入make构建整个程序
+输入make txt改变demension.txt
+输入make pic创建图片并更改
+输入make pdf创建pdf
+输入make clean还原所有状态
+
