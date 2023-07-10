@@ -1,7 +1,0 @@
-进入build文件夹
-cmake ..
-make
-make install
-文件会出现在ass06/demo文件夹下
-同时会出现html和latex文件
-
