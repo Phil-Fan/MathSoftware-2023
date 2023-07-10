@@ -19,7 +19,7 @@ Computational Projects Solved with MATLAB 的 12.2 和 12.4，</br>
 </br>
 
 ### 总结
-**今天重点是：LaTeX基本使用、OverLeaf网站、tex+Makefile+slide的工作流**</br>
+**今天重点是：LaTeX基本使用、OverLeaf网站、tex+Makefile+slide的工作流、Tikz & matlibplot 可视化**</br>
 今天的作业感觉比较机械化吧，没有什么太大难度，就是搜搜公式c+v一下</br>
 画画图，应该比较快的</br>
 想起了以前再xmind里打公式的时候hhh</br>
