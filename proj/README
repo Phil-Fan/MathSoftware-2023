@@ -4,3 +4,33 @@
 /// \version 1.0
 /// \date 2023-07-09
 
+使用方法如下：
+在proj文件夹下：
+先输入make exe生成可执行文件
+再输入make pic生成图片
+再输入make pdf生成pdf
+
+
+
+初始文件夹应该如下图
+├── doc
+│   ├── Makefile
+│   ├── proj.tex
+│   └── references.bib
+├── Makefile
+├── README
+├── src
+│   ├── build
+│   ├── CMakeLists.txt
+│   ├── gene.py
+│   └── step-3.cc
+├── src2
+│   ├── build
+│   ├── CMakeLists.txt
+│   ├── gene.py
+│   └── step-3.cc
+└── src3
+    ├── build
+    ├── CMakeLists.txt
+    ├── gene.py
+    └── step-3.cc

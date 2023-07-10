@@ -1,6 +1,6 @@
 \documentclass[12pt, a4paper]{article}
 \usepackage{amsmath, amsthm, amssymb, appendix, bm, graphicx, hyperref,mathrsfs,fancyhdr,ctex,nameref,tikz,listings,xltxtra,float}
-
+\usepackage{subcaption}
 
 % 定义新的页眉样式
 \fancypagestyle{sectionheader}{
@@ -42,21 +42,179 @@
 
 
 \section{流程}
-123
-\cite{refa}
-根据这篇文档生成了以下的部分
-生成了如下的结果\ref{pic}
+首先，我运行了step-3的程序，
+根据这篇文档\cite{refa}生成了如图\ref{fig:four_views}的结果
+
+其次，我进行了latex代码的编写和dealii教程的阅读，对于求解的问题有了一个大概的了解
+
+然后，我研究了运用python脚本操作paraview的方法，所以本文中的所有图片都是根据solution.vtk自动生成的
+
+最终，我组织了各个文件夹的结构，编写了Makefile文档，并完善了一些注释
 
 
-\begin{figure}[H]% 插入一张图片，H表示浮动环境下的here
-	\centering
-	\begin{minipage}{0.83\textwidth}% 小页面尺寸，可自行调节
-		\centering
-		\includegraphics[width=1.0% 图片尺寸，可自行调节
-		\textwidth]{proj.png}% 图片名称（图片需与tex文件在同一文件夹）
-		\caption{\fontsize{10pt}{15pt}\selectfont 得到的结果}% 图例
-		\label{pic}
-	\end{minipage}
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{proj1.png}
+        \caption{Top View}
+        \label{fig:front_view}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{proj2.png}
+        \caption{Front View}
+        \label{fig:top_view}
+    \end{subfigure}
+    
+    \vspace{1cm} % 图片间距
+    
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{proj3.png}
+        \caption{Side View}
+        \label{fig:side_view}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{proj4.png}
+        \caption{Isometric View}
+        \label{fig:isometric_view}
+    \end{subfigure}
+    
+    \caption{四个视角的计算结果}
+    \label{fig:four_views}
+\end{figure}
+
+\paragraph{step-3 介绍}
+step-3是deal.II中的第一个拉普拉斯求解器。这个例程介绍了有限元程序的一般结构，展示了如何组装线性系统，如何解这个线性方程，然后从中生成图形输出源文件（用于后处理）。
+
+包括了如何建立一个线性系统、如何从双线性形式中组合出线性系统、求解线性系统以及如何用paraview或者visit等工具可视化求解结果等过程
+
+拉普拉斯方程描述了膜在受到外部（垂直的）力时的垂直变形。在目前的例子中，膜的边界被夹在一个没有垂直变化的方形框架上；因此，一个恒定的力密度将直观地导致一个简单地向上鼓起的膜——就像\ref{fig:four_views}所示。
+
+程序输出结果如下
+\begin{lstlisting}[language=c]
+Number of active cells: 1024
+Number of degrees of freedom: 1089
+DEAL:cg::Starting value 0.121094
+DEAL:cg::Convergence step 48 value 5.33692e-13
+\end{lstlisting}
+前两行是写给\verb|std::cout|的内容。最后两行是由CG求解器生成的，因为在\verb|main()|函数中调用\verb|deallog.depth_console(2)|——具体可看3.8节中的内容。这两行以\verb|DEAL:cg:|为前缀，说明了迭代开始时的残差，以及求解器需要48次迭代才能使残差的范数达到$5.33692e-13$即低于在\verb|solve()|函数中设置的阈值。
+
+除了上面显示的输出，该程序还生成了solution.vtk文件，该文件为VTK格式，可以使用paraview或者visit进行可视化。
+
+
+\newpage
+\section{程序的一些拓展}
+\paragraph{更改部分单元的边界指标为1}
+
+目前我们在边界使用\verb|Dirichlet|边界值。默认情况下，所有边界部分的边界指标为零，然后我们告诉\\
+\verb|VectorTools::interpolate_boundary_values()|函数，在所有指标为零的边界部件上将边界值插值为零。
+
+我们在原代码产生第一个正方形区域网格的代码\\
+\verb|GridGenerator::hyper_cube()|
+\begin{lstlisting}[language=c]
+GridGenerator::hyper_cube(triangulation, -1, 1);
+\end{lstlisting}
+后加入：
+\begin{lstlisting}[language=c]
+triangulation.begin_active()
+->face(0)->set_boundary_id(1);
+\end{lstlisting}
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{proj5.png}
+        \caption{Top View}
+        \label{fig2:front_view}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{proj6.png}
+        \caption{Front View}
+        \label{fig2:top_view}
+    \end{subfigure}
+    
+    \vspace{1cm} % 图片间距
+    
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{proj7.png}
+        \caption{Side View}
+        \label{fig2:side_view}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{proj8.png}
+        \caption{Isometric View}
+        \label{fig2:isometric_view}
+    \end{subfigure}
+    \caption{更改部分单元的边界指标为1的计算结果}
+    \label{fig2:four_views}
+\end{figure}
+
+稍后，当我们开始插值边界条件时，\\
+\verb|VectorTools::interpolate_boundary_values()|
+函数将只为那些边界指示器为零的面产生边界值，而不去管那些边界指示器不同的面。这样做的目的是对前者（边界指标为0）施加$Dirichlet$边界条件，而对后者（边界指标为1）施加齐次$Neumann$条件（即解的法向导数为零，除非在变分等式的右侧添加额外的项来处理潜在的非零$Neumann$条件）。如果你运行该程序，你会看到如图\ref{fig2:four_views}所示的解
+
+
+\paragraph{对边界指标为1的单元也进行插值}
+
+我们可以像上面那样设置不同的边界指标值：
+\begin{lstlisting}[language=c]
+triangulation.begin_active()->face(0)->set_boundary_id(1);
+\end{lstlisting}
+
+但对边界指标1使用不同的边界值函数（而不是默认的齐次$Neumann$条件）。
+
+在实践中，你要做的是为边界指标1增加对\\
+\verb|interpolate_boundary_values|函数的第二次调用。
+\begin{lstlisting}[language=c]
+VectorTools::interpolate_boundary_values
+(dof_handler,1,ConstantFunction<2>(1.),boundary_values);
+\end{lstlisting}
+如果你在函数\verb|interpolate_boundary_values|的第一次调用之后立即再进行一次调用，那么它将把边界指标为1的面的边界值内插到单位值，并将这些内插值与之前计算的边界指标为0的值合并。
+
+其结果是，我们将得到不连续的边界值，在正方形的三条边上为零，在第四条边上为一,如图\ref{fig3:four_views}所示。
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{proj9.png}
+        \caption{Top View}
+        \label{fig3:front_view}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{proj10.png}
+        \caption{Front View}
+        \label{fig3:top_view}
+    \end{subfigure}
+    
+    \vspace{1cm} % 图片间距
+    
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{proj11.png}
+        \caption{Side View}
+        \label{fig3:side_view}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{proj12.png}
+        \caption{Isometric View}
+        \label{fig3:isometric_view}
+    \end{subfigure}
+    \caption{更改部分单元的边界指标为1的计算结果}
+    \label{fig3:four_views}
 \end{figure}
 
 

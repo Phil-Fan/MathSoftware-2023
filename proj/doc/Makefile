@@ -1,19 +1,18 @@
 PROJ = proj
 SOURCE := $(PROJ).tex
-IMAGE = ${PROJ}.png
+IMAGES = proj1.png proj2.png proj3.png proj4.png
 REF = references.bib
 
 all: $(PROJ).pdf 
 
-$(PROJ).pdf: $(PROJ).tex $(IMAGE) $(REF)
+$(PROJ).pdf: $(PROJ).tex $(IMAGES) $(REF)
 	xelatex $(PROJ)
 	bibtex $(PROJ)
 	xelatex $(PROJ)
 	xelatex $(PROJ)
-	xdg-open $(PROJ).pdf
-
 
 clean:
-	rm -rf *.aux *.bbl *.blg *.log *.out *.toc *.nav *.snm *.dat *.pdf
+	rm -rf *.aux *.bbl *.blg *.log *.out *.toc *.nav *.snm *.dat *.pdf *.png
 
 .PHONY: all clean
+
