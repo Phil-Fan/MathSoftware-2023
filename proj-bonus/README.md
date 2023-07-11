@@ -1,10 +1,3 @@
-```
-/// \file README
-/// \brief My final proj of mathsoftware, by Wangheyu
-/// \author PhilFan
-/// \version 1.1
-/// \date 2023-07-11
-```
 # Project - Bonus 实现
 ### 实现方法
 使用方法如下：</br>
@@ -90,3 +83,10 @@ libmpi.so.40
 ```
 找到这些依赖以后，和上边的脚本连起来，就可以了！</br>
 
+```
+/// \file README
+/// \brief My final proj of mathsoftware, by Wangheyu
+/// \author PhilFan
+/// \version 1.1
+/// \date 2023-07-11
+```
