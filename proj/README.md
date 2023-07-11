@@ -1,10 +1,4 @@
-```
-/// \file README
-/// \brief My final proj of mathsoftware, by Wangheyu
-/// \author PhilFan
-/// \version 1.0
-/// \date 2023-07-09
-```
+
 # Final Project (`Bonus`在另一文件夹！！！！) 
 为了保险，后面做的Bonus部分放在了`proj-bonus`文件夹下[proj-bonus](https://github.com/Phil-Fan/MathSoftware-2023/tree/main/proj-bonus)</br>
 ### 实现方法
@@ -195,3 +189,11 @@ endif
 
 ### 总结
 ·······未完待续</br>
+
+```
+/// \file README
+/// \brief My final proj of mathsoftware, by Wangheyu
+/// \author PhilFan
+/// \version 1.0
+/// \date 2023-07-09
+```
