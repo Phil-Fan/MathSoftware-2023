@@ -5,6 +5,8 @@
 /// \version 1.0
 /// \date 2023-07-09
 ```
+# Final Project (`Bonus`在另一文件夹！！！！) 
+为了保险，后面做的Bonus部分放在了`proj-bonus`文件夹下[proj-bonus](https://github.com/Phil-Fan/MathSoftware-2023/tree/main/proj-bonus)</br>
 ### 实现方法
 使用方法如下：</br>
 在proj文件夹下：</br>
